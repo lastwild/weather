@@ -2,8 +2,8 @@ package com.weather;
 
 public interface Constants {
   interface DB {
-    final int DB_VERSON = 1;
-    final String DB_NAME = "Wiather_DB";
+     int DB_VERSON = 1;
+     String DB_NAME = "Wiather_DB";
   }
 
    interface Server{

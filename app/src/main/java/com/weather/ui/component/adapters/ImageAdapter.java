@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import com.weather.R;
 
 public class ImageAdapter extends PagerAdapter {
-  Context mContext;
-  LayoutInflater mLayoutInflater;
+  Context context;
+  LayoutInflater inflater;
   int[] mResources = {
       R.drawable.one,
       R.drawable.two,
@@ -19,8 +19,8 @@ public class ImageAdapter extends PagerAdapter {
   };
 
   public ImageAdapter(Context context) {
-    mContext = context;
-    mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.context = context;
+    inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 
   @Override
@@ -30,12 +30,12 @@ public class ImageAdapter extends PagerAdapter {
 
   @Override
   public boolean isViewFromObject(View view, Object object) {
-    return view == ((LinearLayout) object);
+    return view == (object);
   }
 
   @Override
   public Object instantiateItem(ViewGroup container, int position) {
-    View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
+    View itemView = inflater.inflate(R.layout.i_pager, container, false);
 
     ImageView imageView = (ImageView) itemView.findViewById(R.id.image_view);
     imageView.setImageResource(mResources[position]);

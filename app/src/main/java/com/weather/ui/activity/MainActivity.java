@@ -1,63 +1,99 @@
 package com.weather.ui.activity;
 
-import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.weather.R;
-import com.weather.ui.component.adapters.ImageAdapter;
-import com.weather.ui.component.adapters.ViewPagerAdapter;
-import com.weather.ui.fragment.ForecastForFiveDaysFragment;
-import com.weather.ui.fragment.ForecastForTodayFragment;
+import com.weather.ui.fragment.ForecastFragment;
 
-public class MainActivity extends AbstractActvity {
-  TabLayout tabLayout;
-  ViewPager viewPager;
-  Toolbar toolbar;
-  CollapsingToolbarLayout collapsingToolbarLayout;
-  private ViewPager imagePager;
-  private ImageView imageView;
-  ImageAdapter imageAdapter;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.a_main);
-  //  ButterKnife.bind(this);
-    tabLayout = (TabLayout) this.findViewById(R.id.htab_tabs);
-    viewPager = (ViewPager) this.findViewById(R.id.htab_viewpager);
-    imagePager = (ViewPager) this.findViewById(R.id.image_pager);
-    toolbar = (Toolbar) this.findViewById(R.id.htab_toolbar);
-    collapsingToolbarLayout = (CollapsingToolbarLayout) this.findViewById(R.id.htab_collapse_toolbar);
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setupViewPager(viewPager);
-    tabLayout.setupWithViewPager(viewPager);
-    tabLayout.setPadding(0, 5, 0, 0);
-    imageAdapter = new ImageAdapter(MainActivity.this);
-    imagePager.setAdapter(imageAdapter);
-    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-      @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        imagePager.setCurrentItem(position);
-      }
+public class MainActivity extends AppCompatActivity {
+    @Bind(R.id.navList)
+    ListView mDrawerList;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @Bind(R.id.conteiner)
+    FrameLayout conteiner;
+    ArrayAdapter<String> adapter;
+    ActionBarDrawerToggle mDrawerToggle;
+    String mActivityTitle;
 
-      @Override public void onPageSelected(int position) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.a_main);
+        ButterKnife.bind(this);
+        mActivityTitle = getTitle().toString();
+    /*    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);*/
+        addDrawerItems();
+        setupDrawer();
+        switchFragment();
+    }
 
-      }
+    private void switchFragment() {
+        getSupportFragmentManager().beginTransaction().add(R.id.conteiner, new ForecastFragment()).commit();
+    }
 
-      @Override public void onPageScrollStateChanged(int state) {
+    private void addDrawerItems() {
+        String[] osArray = {"Test", "Test", "Test", "Test", "Test"};
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(adapter);
 
-      }
-    });
-    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-  }
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Time for an smile!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-  private void setupViewPager(ViewPager viewPager) {
-    ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-    adapter.addFragment(new ForecastForFiveDaysFragment(), getString(R.string.forestTest));
-    adapter.addFragment(new ForecastForTodayFragment(), getString(R.string.forestTest));
-    viewPager.setAdapter(adapter);
-  }
+    private void setupDrawer() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close) {
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle("Navigation!");
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        drawer.setDrawerListener(mDrawerToggle);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 }

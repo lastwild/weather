@@ -23,5 +23,7 @@
   <string name="weather">Weather</string>
   <string name="temp_max">Temp max</string>
   <string name="forestTest">test message</string>
+  <string name="check_internet">Error. Please, check internet.</string>
+  <string name="my_city">MY CITY</string>
 
 </resources>
