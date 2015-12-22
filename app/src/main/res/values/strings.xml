@@ -1,0 +1,26 @@
+<resources>
+  <string name="app_name">Weather</string>
+  <string name="action_settings">Settings</string>
+
+  <string name="hello_world">Hello world!</string>
+  <string name="drawer_open">Open navigation drawer</string>
+  <string name="drawer_close">Close navigation drawer</string>
+
+  <string name="tab_today_weather">Today</string>
+  <string name="tab_three_days_weather">3 - 5 days</string>
+
+  <string name="all">All</string>
+  <string name="clouds">Clouds</string>
+  <string name="beg">Beg</string>
+  <string name="speed">Speed</string>
+  <string name="wind">Wind</string>
+  <string name="temp_min">Temp min</string>
+  <string name="humidity">Humidity</string>
+  <string name="temp">Temp</string>
+  <string name="pressure">Pressure</string>
+  <string name="main">Main</string>
+  <string name="description">Description</string>
+  <string name="weather">Weather</string>
+  <string name="temp_max">Temp max</string>
+
+</resources>
