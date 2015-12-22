@@ -1,4 +1,4 @@
-package com.weather.data.model.weather;
+package com.weather.data.model;
 
 public class Weather {
 

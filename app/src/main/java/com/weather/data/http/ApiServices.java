@@ -3,7 +3,8 @@ package com.weather.data.http;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.weather.Constants;
-import com.weather.data.model.weather.WeatherWraper;
+import com.weather.data.model.ForecastForFiveDays;
+import com.weather.data.model.ForecastForToday;
 import retrofit.Call;
 import retrofit.JacksonConverterFactory;
 import retrofit.Retrofit;
@@ -32,11 +33,11 @@ public class ApiServices {
     apiModule = retrofit.create(ApiModule.class);
   }
 
-  public static Call<WeatherWraper> getForecastForToday(String city) {
+  public static Call<ForecastForToday> getForecastForToday(String city) {
     return apiModule.forecastForToday(city, Constants.Server.API_KEY);
   }
 
-  public static Call<WeatherWraper> getForecastForFiveDays(String city) {
+  public static Call<ForecastForFiveDays> getForecastForFiveDays(String city) {
     return apiModule.forecastForFiveDays(city, Constants.Server.API_KEY);
   }
 }

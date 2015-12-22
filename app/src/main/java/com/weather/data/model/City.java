@@ -2,7 +2,6 @@ package com.weather.data.model;
 
 import android.provider.BaseColumns;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.weather.data.model.weather.Coord;
 
 public class City {
   @JsonProperty("_id")
@@ -10,6 +9,10 @@ public class City {
   String name;
   String country;
   Coord coord;
+
+
+  public Integer population;
+  public Sys sys;
 
 
   public interface Table {

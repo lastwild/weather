@@ -22,5 +22,6 @@
   <string name="description">Description</string>
   <string name="weather">Weather</string>
   <string name="temp_max">Temp max</string>
+  <string name="forestTest">test message</string>
 
 </resources>

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.weather.data.model.City;
-import com.weather.data.model.weather.WeatherWraper;
+import com.weather.data.model.ForecastForToday;
 
 public class Store extends SQLiteOpenHelper {
   private static Store store;
@@ -23,31 +23,31 @@ public class Store extends SQLiteOpenHelper {
 
   @Override public void onCreate(SQLiteDatabase db) {
     db.execSQL(City.Table.CREATE);
-    db.execSQL(WeatherWraper.Table.CREATE);
+    db.execSQL(ForecastForToday.Table.CREATE);
   }
 
   @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
   }
 
-  public final void saveWeather(final WeatherWraper weather) {
+  public final void saveWeather(final ForecastForToday weather) {
     if (weather != null) {
       final SQLiteDatabase db = this.getWritableDatabase();
       final ContentValues cv = new ContentValues();
       db.beginTransaction();
-      db.insert(WeatherWraper.Table.NAME_TABLE, null, weather.toContentValues(cv, weather));
+      db.insert(ForecastForToday.Table.NAME_TABLE, null, weather.toContentValues(cv, weather));
       db.setTransactionSuccessful();
       db.endTransaction();
     }
   }
 
-  public final WeatherWraper loadWeatherWraper() {
+  public final ForecastForToday loadWeatherWraper() {
     final SQLiteDatabase db = this.getWritableDatabase();
     Cursor cursor =
-        db.query(WeatherWraper.Table.NAME_TABLE, WeatherWraper.Table.PROJECTION, null, null, null, null, null);
+        db.query(ForecastForToday.Table.NAME_TABLE, ForecastForToday.Table.PROJECTION, null, null, null, null, null);
     try {
       cursor.moveToFirst();
-      return WeatherWraper.fromCursor(cursor);
+      return ForecastForToday.fromCursor(cursor);
     } finally {
       cursor.close();
     }

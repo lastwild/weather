@@ -3,7 +3,8 @@ package com.weather;
 import com.weather.data.http.ApiServices;
 import com.weather.data.http.FailureCallBack;
 import com.weather.data.http.ResponseCallback;
-import com.weather.data.model.weather.WeatherWraper;
+import com.weather.data.model.ForecastForFiveDays;
+import com.weather.data.model.ForecastForToday;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -12,11 +13,11 @@ import retrofit.Retrofit;
 public class StoreService {
   private static Store store = Store.getInstance();
 
-  public static void processForecastForToday(String city, final ResponseCallback<WeatherWraper> responseCallback,
+  public static void processForecastForToday(String city, final ResponseCallback<ForecastForToday> responseCallback,
       final FailureCallBack failureCallBack) {
-    Call<WeatherWraper> call = ApiServices.getForecastForToday(city);
-    call.enqueue(new Callback<WeatherWraper>() {
-      @Override public void onResponse(Response<WeatherWraper> response, Retrofit retrofit) {
+    Call<ForecastForToday> call = ApiServices.getForecastForToday(city);
+    call.enqueue(new Callback<ForecastForToday>() {
+      @Override public void onResponse(Response<ForecastForToday> response, Retrofit retrofit) {
         if (response != null && response.body() != null) {
           store.saveWeather(response.body());
         }
@@ -28,15 +29,17 @@ public class StoreService {
       }
     });
     return;
-  } 
-  
-  public static void processForecastForFiveDays(String city, final ResponseCallback<WeatherWraper> responseCallback,
-      final FailureCallBack failureCallBack) {
-    Call<WeatherWraper> call = ApiServices.getForecastForFiveDays(city);
-    call.enqueue(new Callback<WeatherWraper>() {
-      @Override public void onResponse(Response<WeatherWraper> response, Retrofit retrofit) {
+  }
+
+  public static void processForecastForFiveDays(String city,
+      final ResponseCallback<ForecastForFiveDays> responseCallback, final FailureCallBack failureCallBack) {
+    //Todo тестовое значение
+    String countryCode = "ru";
+    Call<ForecastForFiveDays> call = ApiServices.getForecastForFiveDays(city + "," + countryCode);
+    call.enqueue(new Callback<ForecastForFiveDays>() {
+      @Override public void onResponse(Response<ForecastForFiveDays> response, Retrofit retrofit) {
         if (response != null && response.body() != null) {
-          store.saveWeather(response.body());
+          //Todo  сохранение в базу данных;
         }
         if (responseCallback != null) responseCallback.onResponse(response, retrofit);
       }

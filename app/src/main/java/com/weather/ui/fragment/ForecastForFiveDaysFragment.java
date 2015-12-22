@@ -12,11 +12,11 @@ import com.weather.Store;
 import com.weather.StoreService;
 import com.weather.data.http.FailureCallBack;
 import com.weather.data.http.ResponseCallback;
-import com.weather.data.model.weather.WeatherWraper;
+import com.weather.data.model.ForecastForToday;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class ThreeFragment extends Fragment implements FailureCallBack, ResponseCallback<WeatherWraper> {
+public class ForecastForFiveDaysFragment extends Fragment implements FailureCallBack, ResponseCallback<ForecastForToday> {
 
   TextView text;
 
@@ -32,8 +32,8 @@ public class ThreeFragment extends Fragment implements FailureCallBack, Response
     toast.show();
   }
 
-  @Override public void onResponse(Response<WeatherWraper> response, Retrofit retrofit) {
-    WeatherWraper weatherWraper = Store.getInstance().loadWeatherWraper();
+  @Override public void onResponse(Response<ForecastForToday> response, Retrofit retrofit) {
+    ForecastForToday weatherWraper = Store.getInstance().loadWeatherWraper();
     text.setText(weatherWraper.base);
   }
 }
