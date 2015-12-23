@@ -14,8 +14,8 @@ public class AppUtils {
   private static Context context;
   private static AppUtils appUtils;
 
-  public AppUtils(Context context) {
-    this.context = context;
+  public AppUtils(final Context context) {
+    AppUtils.context = context;
   }
 
   public static synchronized AppUtils getInstance() {
@@ -25,13 +25,13 @@ public class AppUtils {
     return appUtils;
   }
 
-  public static void showToast(@StringRes int resId) {
-    Toast toast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
+  public static void showToast(@StringRes final int resId) {
+    final Toast toast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
     toast.show();
   }
 
-  public void showListDialog(@StringRes int resId, CharSequence[] items,
-      final DialogInterface.OnClickListener listener) {
-    AlertDialog alertDialog = new AlertDialog.Builder(context).setTitle(resId).setItems(items, listener).show();
+  public static void showListDialog(@StringRes final int resId, final CharSequence[] items,
+                                    final DialogInterface.OnClickListener listener) {
+    final AlertDialog alertDialog = new AlertDialog.Builder(context).setTitle(resId).setItems(items, listener).show();
   }
 }

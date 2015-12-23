@@ -9,13 +9,13 @@ import java.util.List;
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<AbstractHolder> {
   private List<T> list = new ArrayList<T>();
 
-  public RecyclerAdapter(List<T> list) {
+  public RecyclerAdapter(final List<T> list) {
     this.list = list;
   }
 
   @Override public abstract AbstractHolder onCreateViewHolder(ViewGroup parent, int viewType);
 
-  @Override public void onBindViewHolder(AbstractHolder holder, int position) {
+  @Override public void onBindViewHolder(final AbstractHolder holder, final int position) {
     holder.bind(list.get(position));
   }
 

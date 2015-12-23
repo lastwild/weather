@@ -27,15 +27,15 @@ public class ForecastForTodayFragment extends AbstractFragment implements Respon
   @Bind(R.id.speed) TextView speed;
   @Bind(R.id.allClouds) TextView allClouds;
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.f_today, container, false);
+  @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.f_today, container, false);
     StoreService.processForecastForToday("Москва", this, this);
     return view;
   }
 
 
-  @Override public void onResponse(Response<ForecastForToday> response, Retrofit retrofit) {
-    ForecastForToday weatherWraper = Store.getInstance().loadWeatherWraper();
+  @Override public void onResponse(final Response<ForecastForToday> response, final Retrofit retrofit) {
+    final ForecastForToday weatherWraper = Store.getInstance().loadWeatherWraper();
 //    sunrise.setText(weatherWraper.sys.sunrise);
 //    sunset.setText(weatherWraper.sys.sunset);
 //    pressure.setText(weatherWraper.main.pressure.toString());

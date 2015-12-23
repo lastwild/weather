@@ -3,11 +3,11 @@ package com.weather.ui.component.holders;
 import android.view.View;
 
 public class SimpleHolder<String> extends  AbstractHolder {
-  public SimpleHolder(View itemView) {
+  public SimpleHolder(final View itemView) {
     super(itemView);
   }
 
-  @Override public <T> void bind(T Object) {
+  @Override public <T> void bind(final T Object) {
 
   }
 }

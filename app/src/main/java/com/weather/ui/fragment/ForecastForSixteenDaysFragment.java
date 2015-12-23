@@ -14,13 +14,13 @@ import retrofit.Retrofit;
 public class ForecastForSixteenDaysFragment extends AbstractFragment implements
     ResponseCallback<ForecastForDays> {
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.f_sixteen_forecast, container, false);
+  @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.f_sixteen_forecast, container, false);
     StoreService.processForecastForSixteenDays("Москва", this, this);
     return view;
   }
 
-  @Override public void onResponse(Response<ForecastForDays> response, Retrofit retrofit) {
+  @Override public void onResponse(final Response<ForecastForDays> response, final Retrofit retrofit) {
 
   }
 }

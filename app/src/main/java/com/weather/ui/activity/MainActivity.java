@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
   @Bind(R.id.edit_city) EditText editCity;
   ActionBarDrawerToggle mDrawerToggle;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.a_main);
     ButterKnife.bind(this);
@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
     setActionBar();
     switchFragment();
     editCity.setOnTouchListener(new View.OnTouchListener() {
-      @Override public boolean onTouch(View v, MotionEvent event) {
+      @Override public boolean onTouch(final View v, final MotionEvent event) {
         //Todo test data
-        String[] testArray = { "test", "test" };
-        AppUtils.getInstance().showListDialog(R.string.forestTest, testArray, new DialogInterface.OnClickListener() {
-          @Override public void onClick(DialogInterface dialog, int which) {
+        final String[] testArray = { "test", "test" };
+        AppUtils.showListDialog(R.string.forestTest, testArray, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(final DialogInterface dialog, final int which) {
 
           }
         }); return false;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     if (toolbar != null) {
       setSupportActionBar(toolbar);
     }
-    android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+    final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
   }
@@ -65,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
   private void setupDrawer() {
     mDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.forestTest, R.string.forestTest) {
 
-      @Override public void onDrawerOpened(View drawerView) {
+      @Override public void onDrawerOpened(final View drawerView) {
         super.onDrawerOpened(drawerView);
         invalidateOptionsMenu();
       }
 
-      @Override public void onDrawerClosed(View view) {
+      @Override public void onDrawerClosed(final View view) {
         super.onDrawerClosed(view);
         invalidateOptionsMenu();
       }
@@ -80,20 +81,17 @@ public class MainActivity extends AppCompatActivity {
     drawer.setDrawerListener(mDrawerToggle);
   }
 
-  @Override protected void onPostCreate(Bundle savedInstanceState) {
+  @Override protected void onPostCreate(final Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     mDrawerToggle.syncState();
   }
 
-  @Override public void onConfigurationChanged(Configuration newConfig) {
+  @Override public void onConfigurationChanged(final Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     mDrawerToggle.onConfigurationChanged(newConfig);
   }
 
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    if (mDrawerToggle.onOptionsItemSelected(item)) {
-      return true;
-    }
-    return super.onOptionsItemSelected(item);
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
+    return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
   }
 }

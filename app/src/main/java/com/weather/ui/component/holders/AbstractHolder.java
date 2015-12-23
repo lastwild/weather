@@ -5,7 +5,7 @@ import android.view.View;
 
 public abstract class AbstractHolder  extends RecyclerView.ViewHolder{
 
-    public AbstractHolder(View itemView) {
+    public AbstractHolder(final View itemView) {
         super(itemView);
     }
 

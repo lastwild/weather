@@ -11,81 +11,93 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class StoreService {
-  private static Store store = Store.getInstance();
+  private final static Store store = Store.getInstance();
   //Todo тестовое значение private
-   static String countryCode= "ru";;
+   static String countryCode= "ru";
 
 
-  public static void processForecastForToday(String city, final ResponseCallback<ForecastForToday> responseCallback,
+  public static void processForecastForToday(final String city, final ResponseCallback<ForecastForToday> responseCallback,
       final FailureCallBack failureCallBack) {
-    Call<ForecastForToday> call = ApiServices.getForecastForToday(city);
+    final Call<ForecastForToday> call = ApiServices.getForecastForToday(city);
     call.enqueue(new Callback<ForecastForToday>() {
-      @Override public void onResponse(Response<ForecastForToday> response, Retrofit retrofit) {
+      @Override public void onResponse(final Response<ForecastForToday> response, final Retrofit retrofit) {
         if (response != null && response.body() != null) {
           store.saveWeather(response.body());
         }
-        if (responseCallback != null) responseCallback.onResponse(response, retrofit);
+        if (responseCallback != null) {
+          responseCallback.onResponse(response, retrofit);
+        }
       }
 
-      @Override public void onFailure(Throwable t) {
-        if (failureCallBack != null) failureCallBack.onFailure(t);
+      @Override public void onFailure(final Throwable t) {
+        if (failureCallBack != null) {
+          failureCallBack.onFailure(t);
+        }
       }
     });
-    return;
   }
 
-  public static void processForecastForFiveDays(String city, final ResponseCallback<ForecastForDays> responseCallback,
+  public static void processForecastForFiveDays(final String city, final ResponseCallback<ForecastForDays> responseCallback,
       final FailureCallBack failureCallBack) {
-    Call<ForecastForDays> call = ApiServices.getForecastForFiveDays(city + "," + countryCode);
+    final Call<ForecastForDays> call = ApiServices.getForecastForFiveDays(city + "," + countryCode);
     call.enqueue(new Callback<ForecastForDays>() {
-      @Override public void onResponse(Response<ForecastForDays> response, Retrofit retrofit) {
+      @Override public void onResponse(final Response<ForecastForDays> response, final Retrofit retrofit) {
         if (response != null && response.body() != null) {
           //Todo  сохранение в базу данных;
         }
-        if (responseCallback != null) responseCallback.onResponse(response, retrofit);
+        if (responseCallback != null) {
+          responseCallback.onResponse(response, retrofit);
+        }
       }
 
-      @Override public void onFailure(Throwable t) {
-        if (failureCallBack != null) failureCallBack.onFailure(t);
+      @Override public void onFailure(final Throwable t) {
+        if (failureCallBack != null) {
+          failureCallBack.onFailure(t);
+        }
       }
     });
-    return;
   }
 
-  public static void processForecastForSixteenDays(String city,
+  public static void processForecastForSixteenDays(final String city,
       final ResponseCallback<ForecastForDays> responseCallback, final FailureCallBack failureCallBack) {
-    Call<ForecastForDays> call = ApiServices.getForecastForSixteenDays(city + "," + countryCode);
+    final Call<ForecastForDays> call = ApiServices.getForecastForSixteenDays(city + "," + countryCode);
     call.enqueue(new Callback<ForecastForDays>() {
-      @Override public void onResponse(Response<ForecastForDays> response, Retrofit retrofit) {
+      @Override public void onResponse(final Response<ForecastForDays> response, final Retrofit retrofit) {
         if (response != null && response.body() != null) {
           //Todo  сохранение в базу данных;
         }
-        if (responseCallback != null) responseCallback.onResponse(response, retrofit);
+        if (responseCallback != null) {
+          responseCallback.onResponse(response, retrofit);
+        }
       }
 
-      @Override public void onFailure(Throwable t) {
-        if (failureCallBack != null) failureCallBack.onFailure(t);
+      @Override public void onFailure(final Throwable t) {
+        if (failureCallBack != null) {
+          failureCallBack.onFailure(t);
+        }
       }
     });
-    return;
   }
 
-  public static void processHourlyHistorical(String city, final ResponseCallback<ForecastForDays> responseCallback,
+  public static void processHourlyHistorical(final String city, final ResponseCallback<ForecastForDays> responseCallback,
       final FailureCallBack failureCallBack) {
-     int start = 1;
-    Call<ForecastForDays> call = ApiServices.getHourlyHistorical(city, start);
+     final int start = 1;
+    final Call<ForecastForDays> call = ApiServices.getHourlyHistorical(city, start);
     call.enqueue(new Callback<ForecastForDays>() {
-      @Override public void onResponse(Response<ForecastForDays> response, Retrofit retrofit) {
+      @Override public void onResponse(final Response<ForecastForDays> response, final Retrofit retrofit) {
         if (response != null && response.body() != null) {
           //Todo  сохранение в базу данных;
         }
-        if (responseCallback != null) responseCallback.onResponse(response, retrofit);
+        if (responseCallback != null) {
+          responseCallback.onResponse(response, retrofit);
+        }
       }
 
-      @Override public void onFailure(Throwable t) {
-        if (failureCallBack != null) failureCallBack.onFailure(t);
+      @Override public void onFailure(final Throwable t) {
+        if (failureCallBack != null) {
+          failureCallBack.onFailure(t);
+        }
       }
     });
-    return;
   }
 }

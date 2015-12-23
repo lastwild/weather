@@ -12,39 +12,42 @@ import com.weather.R;
 import com.weather.ui.component.adapters.ImageAdapter;
 import com.weather.ui.component.adapters.ViewPagerAdapter;
 
-public class ForecastFragment extends AbstractFragment {
+public class ForecastFragment extends AbstractFragment implements ViewPager.OnPageChangeListener {
   @Bind(R.id.tab_layout) TabLayout tabLayout;
   @Bind(R.id.viewpager) ViewPager viewPager;
   @Bind(R.id.image_pager) ViewPager imagePager;
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.f_forecast, container, false);
+  @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.f_forecast, container, false);
     ButterKnife.bind(this, view);
     setupViewPagers(viewPager);
     tabLayout.setupWithViewPager(viewPager);
     return view;
   }
 
-  private void setupViewPagers(ViewPager viewPager) {
-    ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+  private void setupViewPagers(final ViewPager viewPager) {
+    final ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
     adapter.addFragment(new ForecastForFiveDaysFragment(), getString(R.string.current_weather));
     adapter.addFragment(new ForecastForTodayFragment(), getString(R.string.five_days_forecast));
     adapter.addFragment(new ForecastForSixteenDaysFragment(), getString(R.string.sixteen_days_forecast));
     viewPager.setAdapter(adapter);
-    ImageAdapter imageAdapter = new ImageAdapter(getActivity());
+    final ImageAdapter imageAdapter = new ImageAdapter(getActivity());
     imagePager.setAdapter(imageAdapter);
-    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-      @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        imagePager.setCurrentItem(position);
-      }
+    viewPager.addOnPageChangeListener(this);
+  }
 
-      @Override public void onPageSelected(int position) {
+  @Override
+  public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+    imagePager.setCurrentItem(position);
+  }
 
-      }
+  @Override
+  public void onPageSelected(final int position) {
 
-      @Override public void onPageScrollStateChanged(int state) {
+  }
 
-      }
-    });
+  @Override
+  public void onPageScrollStateChanged(final int state) {
+
   }
 }

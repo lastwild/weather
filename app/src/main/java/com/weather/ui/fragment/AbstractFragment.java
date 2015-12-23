@@ -8,10 +8,10 @@ import com.weather.utils.AppUtils;
 
 public class AbstractFragment extends Fragment implements FailureCallBack {
 
-  @Override public void onAttach(Context context) {
+  @Override public void onAttach(final Context context) {
     super.onAttach(context);
   }
-  @Override public void onFailure(Throwable t) {
+  @Override public void onFailure(final Throwable t) {
     AppUtils.getInstance().showToast(R.string.check_internet);
   }
 }
