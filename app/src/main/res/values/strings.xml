@@ -1,10 +1,5 @@
 <resources>
   <string name="app_name">Weather</string>
-  <string name="action_settings">Settings</string>
-
-  <string name="hello_world">Hello world!</string>
-  <string name="drawer_open">Open navigation drawer</string>
-  <string name="drawer_close">Close navigation drawer</string>
 
   <string name="tab_today_weather">Today</string>
   <string name="tab_three_days_weather">3 - 5 days</string>
@@ -25,5 +20,9 @@
   <string name="forestTest">test message</string>
   <string name="check_internet">Error. Please, check internet.</string>
   <string name="my_city">MY CITY</string>
+  <string name="add_city">Add city</string>
+  <string name="current_weather">current weather</string>
+  <string name="five_days_forecast">5 day forecast </string>
+  <string name="sixteen_days_forecast">16 day forecast</string>
 
 </resources>

@@ -1,15 +1,20 @@
 package com.weather.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.Bind;
 import com.weather.R;
+import com.weather.Store;
+import com.weather.StoreService;
+import com.weather.data.http.ResponseCallback;
+import com.weather.data.model.ForecastForToday;
+import retrofit.Response;
+import retrofit.Retrofit;
 
-public class ForecastForTodayFragment extends Fragment {
+public class ForecastForTodayFragment extends AbstractFragment implements ResponseCallback<ForecastForToday> {
   @Bind(R.id.sunrise) TextView sunrise;
   @Bind(R.id.sunset) TextView sunset;
   @Bind(R.id.main) TextView main;
@@ -22,21 +27,20 @@ public class ForecastForTodayFragment extends Fragment {
   @Bind(R.id.speed) TextView speed;
   @Bind(R.id.allClouds) TextView allClouds;
 
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.f_today, container, false);
+    StoreService.processForecastForToday("Москва", this, this);
+    return view;
+  }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.f_today, container, false);
-        return view;
 
-      //sunrise.setText(weather.sys.sunrise);
-      //sunset.setText(weather.sys.sunset);
-      //main.setText(weather.prime.);
-      //description.setText(weather.);
-      //pressure.setText(weather.prime.pressure);
-      //temp.setText(weather.prime.temp);
-      //humidity.setText();
-      //tempMin.setText(weather.prime.tempMin);
-      //tempMax.setText(weather.prime.tempMax);
-    }
+  @Override public void onResponse(Response<ForecastForToday> response, Retrofit retrofit) {
+    ForecastForToday weatherWraper = Store.getInstance().loadWeatherWraper();
+//    sunrise.setText(weatherWraper.sys.sunrise);
+//    sunset.setText(weatherWraper.sys.sunset);
+//    pressure.setText(weatherWraper.main.pressure.toString());
+/*    temp.setText(weatherWraper.main.temp.toString());
+    tempMin.setText(weatherWraper.main.tempMin.toString());
+    tempMax.setText(weatherWraper.main.tempMax.toString());*/
+  }
 }

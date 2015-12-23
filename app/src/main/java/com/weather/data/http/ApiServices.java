@@ -3,7 +3,7 @@ package com.weather.data.http;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.weather.Constants;
-import com.weather.data.model.ForecastForFiveDays;
+import com.weather.data.model.ForecastForDays;
 import com.weather.data.model.ForecastForToday;
 import retrofit.Call;
 import retrofit.JacksonConverterFactory;
@@ -37,7 +37,15 @@ public class ApiServices {
     return apiModule.forecastForToday(city, Constants.Server.API_KEY);
   }
 
-  public static Call<ForecastForFiveDays> getForecastForFiveDays(String city) {
+  public static Call<ForecastForDays> getForecastForFiveDays(String city) {
     return apiModule.forecastForFiveDays(city, Constants.Server.API_KEY);
+  }
+
+  public static Call<ForecastForDays> getForecastForSixteenDays(String city) {
+    return apiModule.forecastForSixteenDays(city, Constants.COUNT, Constants.Server.API_KEY);
+  }
+
+  public static Call<ForecastForDays> getHourlyHistorical(String city, int start) {
+    return apiModule.hourlyHistorical(city, Constants.TYPE, start, Constants.COUNT, Constants.Server.API_KEY);
   }
 }

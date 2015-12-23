@@ -12,4 +12,9 @@ public class WeatherList {
   public Pod sys;
   public String dtTxt;
   public Snow snow;
+  public Temp temp;
+  public Float pressure;
+  public Integer humidity;
+  public Float speed;
+  public Integer deg;
 }

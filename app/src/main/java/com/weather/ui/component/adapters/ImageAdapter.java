@@ -13,9 +13,7 @@ public class ImageAdapter extends PagerAdapter {
   Context context;
   LayoutInflater inflater;
   int[] mResources = {
-      R.drawable.one,
-      R.drawable.two,
-      R.drawable.three
+      R.drawable.one, R.drawable.two, R.drawable.three
   };
 
   public ImageAdapter(Context context) {
@@ -23,18 +21,15 @@ public class ImageAdapter extends PagerAdapter {
     inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 
-  @Override
-  public int getCount() {
+  @Override public int getCount() {
     return mResources.length;
   }
 
-  @Override
-  public boolean isViewFromObject(View view, Object object) {
+  @Override public boolean isViewFromObject(View view, Object object) {
     return view == (object);
   }
 
-  @Override
-  public Object instantiateItem(ViewGroup container, int position) {
+  @Override public Object instantiateItem(ViewGroup container, int position) {
     View itemView = inflater.inflate(R.layout.i_pager, container, false);
 
     ImageView imageView = (ImageView) itemView.findViewById(R.id.image_view);
@@ -45,8 +40,7 @@ public class ImageAdapter extends PagerAdapter {
     return itemView;
   }
 
-  @Override
-  public void destroyItem(ViewGroup container, int position, Object object) {
+  @Override public void destroyItem(ViewGroup container, int position, Object object) {
     container.removeView((LinearLayout) object);
   }
 }
