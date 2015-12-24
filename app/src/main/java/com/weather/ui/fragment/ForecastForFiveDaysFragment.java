@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import com.weather.R;
 import com.weather.StoreService;
 import com.weather.data.http.FailureCallBack;
@@ -17,11 +18,12 @@ public class ForecastForFiveDaysFragment extends AbstractFragment
 
   @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.f_five_forecast, container, false);
-    StoreService.processForecastForFiveDays("Москва", this, this);
+    StoreService.processForecastForFiveDays("London", this, this);
     return view;
   }
 
   @Override public void onResponse(final Response<ForecastForDays> response, final Retrofit retrofit) {
-
+    final Toast toast = Toast.makeText(getActivity(), getClass().getSimpleName() +" "+ "work test", Toast.LENGTH_LONG);
+    toast.show();
   }
 }

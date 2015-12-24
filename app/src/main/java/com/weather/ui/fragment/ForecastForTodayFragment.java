@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.Bind;
 import com.weather.R;
-import com.weather.Store;
 import com.weather.StoreService;
 import com.weather.data.http.ResponseCallback;
 import com.weather.data.model.ForecastForToday;
@@ -27,18 +27,21 @@ public class ForecastForTodayFragment extends AbstractFragment implements Respon
   @Bind(R.id.speed) TextView speed;
   @Bind(R.id.allClouds) TextView allClouds;
 
-  @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+  @Override
+  public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.f_today, container, false);
-    StoreService.processForecastForToday("Москва", this, this);
+    StoreService.processForecastForToday("Moscow", this, this);
     return view;
   }
 
-
   @Override public void onResponse(final Response<ForecastForToday> response, final Retrofit retrofit) {
-    final ForecastForToday weatherWraper = Store.getInstance().loadWeatherWraper();
-//    sunrise.setText(weatherWraper.sys.sunrise);
-//    sunset.setText(weatherWraper.sys.sunset);
-//    pressure.setText(weatherWraper.main.pressure.toString());
+    final Toast toast = Toast.makeText(getActivity(), getClass().getSimpleName() +" "+ "work test", Toast.LENGTH_SHORT);
+    toast.show();
+ /*   final ForecastForToday weatherWraper =
+        (ForecastForToday) Store.getInstance().loadWeatherWraper(ForecastForToday.class);*/
+    //    sunrise.setText(weatherWraper.sys.sunrise);
+    //    sunset.setText(weatherWraper.sys.sunset);
+    //    pressure.setText(weatherWraper.main.pressure.toString());
 /*    temp.setText(weatherWraper.main.temp.toString());
     tempMin.setText(weatherWraper.main.tempMin.toString());
     tempMax.setText(weatherWraper.main.tempMax.toString());*/

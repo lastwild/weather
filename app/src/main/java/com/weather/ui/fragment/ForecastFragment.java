@@ -33,7 +33,8 @@ public class ForecastFragment extends AbstractFragment implements ViewPager.OnPa
     viewPager.setAdapter(adapter);
     final ImageAdapter imageAdapter = new ImageAdapter(getActivity());
     imagePager.setAdapter(imageAdapter);
-    viewPager.addOnPageChangeListener(this);
+    imagePager.setOnTouchListener((v, event) -> true);
+     viewPager.addOnPageChangeListener(this);
   }
 
   @Override

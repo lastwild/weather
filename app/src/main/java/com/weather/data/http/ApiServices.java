@@ -12,9 +12,9 @@ import retrofit.JacksonConverterFactory;
 import retrofit.Retrofit;
 
 public class ApiServices {
- private static ApiModule apiModule;
- private static OkHttpClient httpClient;
- public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+  private static ApiModule apiModule;
+  private static OkHttpClient httpClient;
+  public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   static {
     initHttpClient();

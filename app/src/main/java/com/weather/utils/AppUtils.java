@@ -7,9 +7,6 @@ import android.support.annotation.StringRes;
 import android.widget.Toast;
 import com.weather.Application;
 
-/**
- * Created by fife on 22.12.2015.
- */
 public class AppUtils {
   private static Context context;
   private static AppUtils appUtils;
@@ -25,13 +22,13 @@ public class AppUtils {
     return appUtils;
   }
 
-  public static void showToast(@StringRes final int resId) {
-    final Toast toast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
+  public static void showToast(String string) {
+    final Toast toast = Toast.makeText(context, string, Toast.LENGTH_LONG);
     toast.show();
   }
 
   public static void showListDialog(@StringRes final int resId, final CharSequence[] items,
-                                    final DialogInterface.OnClickListener listener) {
+      final DialogInterface.OnClickListener listener) {
     final AlertDialog alertDialog = new AlertDialog.Builder(context).setTitle(resId).setItems(items, listener).show();
   }
 }

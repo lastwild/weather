@@ -15,7 +15,7 @@ public class HourlyHistoricalFragment extends AbstractFragment implements Respon
 
   @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.f_history, container, false);
-    StoreService.processHourlyHistorical("Москва", this, this);
+    StoreService.processHourlyHistorical("Moscow", this, this);
     return view;
   }
 
