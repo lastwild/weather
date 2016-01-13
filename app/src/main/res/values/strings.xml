@@ -24,5 +24,7 @@
   <string name="current_weather">current weather</string>
   <string name="five_days_forecast">5 day forecast </string>
   <string name="sixteen_days_forecast">16 day forecast</string>
+  <string name="read_more"> Read more...</string>
+  <string name="progress_message">Please wait</string>
 
 </resources>
